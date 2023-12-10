@@ -8,13 +8,14 @@ const Model = () => {
         <>
             <group>
                 <mesh
+                    position={[-0.5, 12.7, -3.1]}
+                    rotation={[Math.PI / 2, 0, 0]}
                     castShadow
                     receiveShadow
-                    geometry={nodes.Sphere_1.geometry}
-                    material={nodes.Sphere_1.material}
-                    position={[0, 17.501, 0]}
-                    rotation={[Math.PI / 2, 0, 0]}
-                />
+                >
+                    <meshBasicMaterial color={'red'} />
+                    <sphereGeometry args={[1]} />
+                </mesh>
                 <mesh
                     castShadow
                     receiveShadow
