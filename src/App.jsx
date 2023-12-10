@@ -1,6 +1,7 @@
 import { OrbitControls } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useRef } from 'react';
+import Model from './Model';
 
 const App = () => {
     const cube = useRef();
@@ -32,6 +33,7 @@ const App = () => {
                 <planeGeometry args={[15, 15]} />
                 <meshStandardMaterial color='green' />
             </mesh>
+            <Model />
         </>
     );
 };
