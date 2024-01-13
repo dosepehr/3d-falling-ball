@@ -1,11 +1,12 @@
-import { Center, OrbitControls } from '@react-three/drei';
+import { Center, ScrollControls } from '@react-three/drei';
 import Model from './Model';
 const App = () => {
     return (
         <>
-            <OrbitControls />
             <Center>
-                <Model />
+                <ScrollControls pages={14}>
+                    <Model />
+                </ScrollControls>
             </Center>
         </>
     );
