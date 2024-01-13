@@ -1,5 +1,10 @@
 import { useRef, useLayoutEffect } from 'react';
-import { useGLTF, useTexture, useScroll } from '@react-three/drei';
+import {
+    useGLTF,
+    useTexture,
+    useScroll,
+    useCubeTexture,
+} from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import Lights from './Lights';
 import gsap from 'gsap';
@@ -46,6 +51,10 @@ const Model = () => {
             y: '-=55',
         });
     }, []);
+    const ballTexture = useCubeTexture(
+        ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
+        { path: '/cubeMap/' }
+    );
     return (
         <>
             <Lights />
@@ -57,7 +66,11 @@ const Model = () => {
                     castShadow
                     receiveShadow
                 >
-                    <meshStandardMaterial color={'red'} />
+                    <meshBasicMaterial
+                        color={'red'}
+                        reflectivity={0.5}
+                        envMap={ballTexture}
+                    />
                     <sphereGeometry args={[1]} />
                 </mesh>
                 <mesh
