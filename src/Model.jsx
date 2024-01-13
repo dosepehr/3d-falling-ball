@@ -3,6 +3,7 @@ import { useGLTF, useTexture, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import Lights from './Lights';
 import gsap from 'gsap';
+import changeBallColor from './helpers/changeBallColor';
 const Model = () => {
     const { nodes } = useGLTF('/model/ball.glb');
     const bakedTexture = useTexture('/model/ball.jpg');
@@ -14,6 +15,7 @@ const Model = () => {
     useFrame(() => {
         // gsap animation
         tl.current.seek(scroll.offset * tl.current.duration());
+        changeBallColor(ball.current);
     });
     useLayoutEffect(() => {
         tl.current = gsap.timeline({
@@ -55,7 +57,7 @@ const Model = () => {
                     castShadow
                     receiveShadow
                 >
-                    <meshStandardMaterial />
+                    <meshStandardMaterial color={'red'} />
                     <sphereGeometry args={[1]} />
                 </mesh>
                 <mesh
