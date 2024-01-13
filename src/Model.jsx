@@ -1,11 +1,16 @@
-import React from 'react';
+import { useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
+import Lights from './Lights';
 const Model = () => {
     const { nodes } = useGLTF('/model/ball.glb');
     const bakedTexture = useTexture('/model/ball.jpg');
     bakedTexture.flipY = false;
+    // refs
+    const ball = useRef();
+
     return (
         <>
+            <Lights />
             <group>
                 <mesh
                     position={[-0.5, 12.7, -3.1]}
@@ -13,7 +18,7 @@ const Model = () => {
                     castShadow
                     receiveShadow
                 >
-                    <meshBasicMaterial color={'red'} />
+                    <meshStandardMaterial />
                     <sphereGeometry args={[1]} />
                 </mesh>
                 <mesh
@@ -24,7 +29,7 @@ const Model = () => {
                     position={[0, 17.501, 0]}
                     rotation={[Math.PI / 2, 0, 0]}
                 >
-                    <meshBasicMaterial map={bakedTexture} />
+                    <meshStandardMaterial map={bakedTexture} />
                 </mesh>
                 <mesh
                     castShadow
@@ -34,7 +39,7 @@ const Model = () => {
                     position={[0, 17.501, -0.001]}
                     rotation={[Math.PI / 2, 0, 0]}
                 >
-                    <meshBasicMaterial map={bakedTexture} />
+                    <meshStandardMaterial map={bakedTexture} />
                 </mesh>
                 <mesh
                     castShadow
@@ -44,7 +49,7 @@ const Model = () => {
                     position={[-0.006, 11.486, 5.682]}
                     rotation={[Math.PI / 2, 0, 0]}
                 >
-                    <meshBasicMaterial map={bakedTexture} />
+                    <meshStandardMaterial map={bakedTexture} />
                 </mesh>
             </group>
         </>
